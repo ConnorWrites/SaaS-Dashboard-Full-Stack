@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function register(email, password) {
   const res = await fetch(`${API_URL}/register`, {
@@ -41,8 +41,10 @@ export async function createProject(name) {
 
   const res = await fetch(`${API_URL}/projects`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      credentials: "include",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name }),
@@ -56,6 +58,7 @@ export async function deleteProject(id) {
 
   await fetch(`${API_URL}/projects/${id}`, {
     method: "DELETE",
+    credentials: "include",
     headers: {
       Authorization: `Bearer ${token}`,
     },

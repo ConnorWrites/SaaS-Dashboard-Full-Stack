@@ -8,7 +8,9 @@ const projectRoutes = require("./routes/projects");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({origin: "https://saas-dashboard-full-stack.onrender.com",
+credentials: true})); // Update with your frontend URL
+
 app.use(express.json());
 
 app.use(authRoutes);
