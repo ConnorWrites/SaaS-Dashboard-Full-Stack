@@ -5,6 +5,22 @@ const db = require("../db/db");
 
 const router = express.Router();
 
+// CHECK AUTH
+router.get("/me", (req, res) => {
+  const token = req.cookies?.token;
+
+  if (!token) {
+    return res.status(401).json({ authenticated: false });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    res.json({ authenticated: true, user: decoded });
+  } catch {
+    res.status(401).json({ authenticated: false });
+  }
+});
+
 // REGISTER
 router.post("/register", (req, res) => {
   const { email, password } = req.body;

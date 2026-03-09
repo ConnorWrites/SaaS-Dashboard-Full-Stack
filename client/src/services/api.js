@@ -1,5 +1,17 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
+export async function checkAuth() {
+  const res = await fetch(`${API_URL}/me`, {
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    throw new Error("Not authenticated");
+  }
+
+  return res.json();
+}
+
 export async function register(email, password) {
   const res = await fetch(`${API_URL}/register`, {
     method: "POST",
