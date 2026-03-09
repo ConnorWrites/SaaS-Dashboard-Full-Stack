@@ -5,8 +5,6 @@ const db = require("../db/db");
 
 const router = express.Router();
 
-const SECRET = "supersecretkey";
-
 // REGISTER
 router.post("/register", (req, res) => {
   const { email, password } = req.body;
@@ -20,7 +18,7 @@ router.post("/register", (req, res) => {
 
   db.run(query, [email, hashedPassword], function (err) {
     if (err) {
-      return res.json({ error: "User already exists" });
+      return res.status(400).json({ error: "User already exists" });
     }
 
     res.json({ message: "User created" });
@@ -35,22 +33,31 @@ router.post("/login", (req, res) => {
 
   db.get(query, [email], (err, user) => {
     if (!user) {
-      return res.json({ error: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid credentials" });
     }
 
     const validPassword = bcrypt.compareSync(password, user.password);
 
     if (!validPassword) {
-      return res.json({ error: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    // ✅ Create JWT using ENV secret
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    res.json({ token });
+    // ✅ Set cookie (RENDER SAFE)
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,        // required on Render (HTTPS)
+      sameSite: "none",    // required for cross-origin
+      maxAge: 60 * 60 * 1000,
+    });
+
+    res.json({ message: "Logged in" });
   });
 });
 
