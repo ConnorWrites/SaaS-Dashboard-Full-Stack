@@ -8,21 +8,27 @@ const projectRoutes = require("./routes/projects");
 
 const app = express();
 
-app.use(cors({origin: "https://saas-dashboard-full-stack.onrender.com",
-credentials: true})); // Update with your frontend URL
+// ✅ CORS — must match frontend Render URL EXACTLY
+app.use(
+  cors({
+    origin: "https://saas-dashboard-full-stack-1.onrender.com",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
 app.use(authRoutes);
-
 app.use(projectRoutes);
 
+// Health check
 app.get("/", (req, res) => {
-res.json({ message: "API running" });
+  res.json({ message: "API running" });
 });
 
-const PORT = 4000;
+// ✅ Render-compatible port
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
