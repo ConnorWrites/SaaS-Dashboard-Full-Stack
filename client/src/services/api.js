@@ -3,6 +3,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export async function register(email, password) {
   const res = await fetch(`${API_URL}/register`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -15,6 +16,7 @@ export async function register(email, password) {
 export async function login(email, password) {
   const res = await fetch(`${API_URL}/login`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -28,6 +30,7 @@ export async function getProjects() {
   const token = localStorage.getItem("token");
 
   const res = await fetch(`${API_URL}/projects`, {
+    credentials: "include",
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -44,7 +47,6 @@ export async function createProject(name) {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      credentials: "include",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name }),
