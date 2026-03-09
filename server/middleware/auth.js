@@ -1,22 +1,17 @@
 const jwt = require("jsonwebtoken");
-jwt.sign(payload, process.env.JWT_SECRET);
-
-const SECRET = "supersecretkey";
 
 function authMiddleware(req, res, next) {
-  const authHeader = req.headers.authorization;
+  const token = req.cookies?.token;
 
-  if (!authHeader) {
-    return res.status(401).json({ error: "No token provided" });
+  if (!token) {
+    return res.status(401).json({ error: "Not authenticated" });
   }
-
-  const token = authHeader.split(" ")[1];
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    req.user = decoded; // attach user info to request
     next();
-  } catch {
+  } catch (err) {
     return res.status(401).json({ error: "Invalid token" });
   }
 }
