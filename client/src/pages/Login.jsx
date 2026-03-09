@@ -11,13 +11,11 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const data = await login(email, password);
-
-    if (data.token) {
-      localStorage.setItem("token", data.token);
+    try {
+      await login(email, password);
       navigate("/dashboard");
-    } else {
-      alert("Invalid login");
+    } catch (err) {
+      alert("Invalid Login");
     }
   }
 

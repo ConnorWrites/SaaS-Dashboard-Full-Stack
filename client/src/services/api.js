@@ -3,10 +3,10 @@ const API_URL = import.meta.env.VITE_API_URL;
 export async function register(email, password) {
   const res = await fetch(`${API_URL}/register`, {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({ email, password }),
   });
 
@@ -23,6 +23,9 @@ export async function login(email, password) {
     body: JSON.stringify({ email, password }),
   });
 
+  if (!res.ok) {
+    throw new Error("Login failed");
+  }
   return res.json();
 }
 
