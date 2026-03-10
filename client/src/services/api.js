@@ -81,3 +81,14 @@ export async function deleteProject(id) {
     },
   });
 }
+
+export async function logout() {
+  await fetch(`${API_URL}/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+  if (!res.ok) {
+    throw new Error("Logout failed");
+  }
+  return res.json();
+} 
