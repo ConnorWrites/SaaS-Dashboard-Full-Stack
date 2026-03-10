@@ -2,11 +2,23 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import "./Layout.css";
-import { logout } from "../services/api";
+import { logout, getMe } from "../services/api";
 
 export default function Layout() {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  // Fetch user info on mount
+  useState(() => {
+    getMe()
+      .then((data) => {
+        setUser(data);
+      })
+      .catch(() => {
+        setUser(null);
+      });
+  }, []);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -30,10 +42,13 @@ export default function Layout() {
           </button>
 
           <h1>My SaaS Dashboard</h1>
+          <div style={{ marginLeft: "auto", display: "flex", gap: "1rem" }}>
+            {user && <span>Welcome, {user.email}</span>}
 
-          <button onClick={handleLogout} style={{ marginLeft: "auto" }}>
+          <button onClick={handleLogout}>
             Logout
           </button>
+          </div>
         </header>
 
         <div className="content">
