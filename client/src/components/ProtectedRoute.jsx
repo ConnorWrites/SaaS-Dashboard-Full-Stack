@@ -16,7 +16,7 @@ export default function ProtectedRoute({ children }) {
   if (loading) return null; // or spinner
 
   if (!authorized) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;
