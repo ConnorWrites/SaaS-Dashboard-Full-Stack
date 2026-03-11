@@ -34,6 +34,10 @@ export async function register(email, password) {
     body: JSON.stringify({ email, password }),
   });
 
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || "Registration failed");
+  }
   return res.json();
 }
 
