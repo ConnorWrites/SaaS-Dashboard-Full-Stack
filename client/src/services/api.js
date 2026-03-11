@@ -108,7 +108,8 @@ export async function logout() {
     credentials: "include",
   });
   if (!res.ok) {
-    throw new Error("Logout failed");
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.message || "Logout failed");
   }
   return res.json();
 } 
