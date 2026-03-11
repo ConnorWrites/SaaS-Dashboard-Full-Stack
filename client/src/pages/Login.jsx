@@ -40,6 +40,10 @@ export default function Login() {
 
         <button type="submit">Login</button>
       </form>
+      <p style={{ marginTop: "1rem" }}>
+  Don’t have an account?{" "}
+  <a href="/register">Register</a>
+</p>
     </div>
   );
 }

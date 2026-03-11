@@ -1,14 +1,14 @@
 # SaaS Dashboard (Full Stack)
 
 A full-stack SaaS-style dashboard built with React, Node.js, Express, and SQLite.  
-It demonstrates real-world authentication, protected routes, persistent sessions, and a scalable dashboard layout.
+It demonstrates authentication, protected routes, persistent sessions, and a scalable dashboard layout.
 
 ---
 
 ## 🚀 Live Demo
 
-**Frontend:** https://<your-frontend>.onrender.com  
-**Backend API:** https://<your-backend>.onrender.com  
+**Frontend:** https://saas-dashboard-full-stack-1.onrender.com  
+**Backend API:** https://saas-dashboard-full-stack.onrender.com  
 
 > Deployed on Render using separate frontend and backend services.
 
@@ -16,9 +16,9 @@ It demonstrates real-world authentication, protected routes, persistent sessions
 
 ## 🧠 Why This Project Exists
 
-This project was built to showcase how **real SaaS applications** are structured and deployed.
+This project was built to showcase all of the following in one app, instead of showing them as isolated features.
 
-Unlike simple demo apps, this dashboard includes:
+It includes:
 - Secure authentication
 - Protected routes
 - Persistent sessions using cookies
@@ -66,7 +66,7 @@ The goal was to build something closer to what you'd see in a real product, not 
 
 ## 🔐 Authentication Architecture
 
-This app uses **cookie-based JWT authentication**, similar to real SaaS products.
+This app uses **cookie-based JWT authentication**.
 
 ### How it works:
 
@@ -81,7 +81,6 @@ This app uses **cookie-based JWT authentication**, similar to real SaaS products
 
 - Prevents XSS attacks
 - Works naturally with sessions
-- Matches production SaaS patterns
 - More secure than storing tokens in JavaScript
 
 ---
@@ -148,20 +147,9 @@ npm run dev
 
 📸 Screenshots
 
-Add screenshots of the dashboard, login page, and sidebar here.
 
-⸻
 
-📈 What This Project Demonstrates
-	•	Real authentication flows (not localStorage hacks)
-	•	Clean frontend architecture with layouts and nested routes
-	•	Backend-verified authorization
-	•	Deployment debugging and cloud constraints
-	•	Production-ready security decisions
-
-⸻
-
-🔮 Possible Improvements
+🔮 Possible future improvements
 	•	Role-based access (admin/user)
 	•	User profile editing
 	•	Billing or subscription logic
@@ -176,4 +164,3 @@ Conrad Wilken
 Frontend / Full-Stack Developer
 
 GitHub: https://github.com/ConnorWrites
-
