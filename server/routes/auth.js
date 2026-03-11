@@ -37,7 +37,20 @@ router.post("/register", (req, res) => {
       return res.status(400).json({ error: "User already exists" });
     }
 
-    res.json({ message: "User created" });
+const token = jwt.sign(
+      { id: this.lastID, email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 60 * 60 * 1000,
+    });
+
+    res.json({ message: "Registered and logged in" });
   });
 });
 

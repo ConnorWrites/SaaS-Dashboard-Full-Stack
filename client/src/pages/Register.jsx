@@ -10,13 +10,12 @@ export default function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const data = await register(email, password);
-
-    if (data.error) {
-      alert(data.error);
-    } else {
-      alert("Account created!");
-      navigate("/");
+    try {
+      await register(email, password);
+      navigate("/dashboard"); // ✅ auto-login redirect
+    } catch (err) {
+      alert("Registration failed");
+      console.error(err);
     }
   }
 
@@ -30,6 +29,7 @@ export default function Register() {
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <input
@@ -37,6 +37,7 @@ export default function Register() {
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <button type="submit">Create Account</button>
