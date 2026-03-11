@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import "./Layout.css";
@@ -10,7 +10,7 @@ export default function Layout() {
   const [user, setUser] = useState(null);
 
   // Fetch user info on mount
-  useState(() => {
+  useEffect(() => {
     getMe()
       .then((data) => {
         setUser(data);

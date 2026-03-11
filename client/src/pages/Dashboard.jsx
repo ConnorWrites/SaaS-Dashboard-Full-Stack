@@ -54,7 +54,6 @@ export default function Dashboard() {
           </li>
         ))}
       </ul>
-      <button onClick={() => {localStorage.removeItem("token"); navigate("/");}}>Logout</button>
     </div>
   );
 }
