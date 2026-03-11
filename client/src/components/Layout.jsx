@@ -25,7 +25,7 @@ export default function Layout() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       console.error("Logout failed", err);
     }

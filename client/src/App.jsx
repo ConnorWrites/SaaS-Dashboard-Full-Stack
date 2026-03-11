@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Public pages */}
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
         {/* Protected pages wrapped in Layout */}
