@@ -147,7 +147,9 @@ npm run dev
 
 📸 Screenshots
 
+![Preview of My App](https://imgur.com/LDQEmBN)
 
+____
 
 🔮 Possible future improvements
 	•	Role-based access (admin/user)
