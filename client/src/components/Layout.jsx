@@ -25,7 +25,9 @@ export default function Layout() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/login");
+
+      //Force exit from protected route tree to reset auth state
+      window.location.href = "/login";
     } catch (err) {
       console.error("Logout failed", err);
     }
