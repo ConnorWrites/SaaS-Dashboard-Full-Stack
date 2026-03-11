@@ -17,6 +17,10 @@ export async function getMe() {
     credentials: "include",
   });
 
+  if (res.status === 401) {
+    return null; // Not authenticated
+  }
+
   if (!res.ok) {
     throw new Error("Not authenticated");
   }
