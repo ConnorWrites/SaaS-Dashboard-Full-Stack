@@ -103,7 +103,7 @@ export async function deleteProject(id) {
 }
 
 export async function logout() {
-  await fetch(`${API_URL}/logout`, {
+  const res = await fetch(`${API_URL}/logout`, {
     method: "POST",
     credentials: "include",
   });
@@ -111,5 +111,5 @@ export async function logout() {
     const data = await res.json().catch(() => ({}));
     throw new Error(data.message || "Logout failed");
   }
-  return res.json();
+  return res.json().catch(() => ({}));
 } 
