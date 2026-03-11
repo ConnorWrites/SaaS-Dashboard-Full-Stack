@@ -26,8 +26,10 @@ export default function Layout() {
     try {
       await logout();
 
-      //Force exit from protected route tree to reset auth state
-      window.location.href = "/login";
+      setUser(null);
+
+      navigate("/login", { replace: true });
+
     } catch (err) {
       console.error("Logout failed", err);
     }
