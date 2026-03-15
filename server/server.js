@@ -8,7 +8,8 @@ const projectRoutes = require("./routes/projects");
 
 const app = express();
 
-// ✅ CORS — must match frontend Render URL EXACTLY
+app.set("trust proxy", 1); // Trust first proxy for secure cookies in production
+
 app.use(
   cors({
     origin: "https://saas-dashboard-full-stack-1.onrender.com",

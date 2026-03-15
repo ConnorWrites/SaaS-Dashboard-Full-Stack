@@ -62,44 +62,46 @@ export async function login(email, password) {
 }
 
 export async function getProjects() {
-  const token = localStorage.getItem("token");
-
+ 
   const res = await fetch(`${API_URL}/projects`, {
     credentials: "include",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch projects");
+  }
 
   return res.json();
 }
 
 export async function createProject(name) {
-  const token = localStorage.getItem("token");
-
+  
   const res = await fetch(`${API_URL}/projects`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name }),
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to create project");
+  }
 
   return res.json();
 }
 
 export async function deleteProject(id) {
-  const token = localStorage.getItem("token");
-
+  
   await fetch(`${API_URL}/projects/${id}`, {
     method: "DELETE",
     credentials: "include",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete project");
+  }
 }
 
 export async function logout() {
