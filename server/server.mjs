@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors({
-  origin: process.env.VITE_API_URL || '*' || 'https://saas-dashboard-s11p.onrender.com', // adjust if you want to restrict frontend origin
+  origin: true, // adjust if you want to restrict frontend origin
   credentials: true
 }));
 app.use(express.json());
@@ -29,9 +29,11 @@ import projectRoutes from './routes/projects.js';
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 // Serve frontend (React) for all other routes
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.resolve('client/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 // Start server
