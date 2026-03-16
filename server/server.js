@@ -13,7 +13,7 @@ app.set("trust proxy", 1); // Trust first proxy for secure cookies in production
 
 app.use(
   cors({
-    origin: "https://saas-dashboard-full-stack-1.onrender.com",
+    origin: "https://saas-dashboard-s11p.onrender.com",
     credentials: true,
   })
 );
