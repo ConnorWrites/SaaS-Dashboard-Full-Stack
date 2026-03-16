@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const cors = require("cors");
@@ -22,6 +23,11 @@ app.use(cookieParser());
 
 app.use(authRoutes);
 app.use(projectRoutes);
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 // Health check
 app.get("/", (req, res) => {
