@@ -1,6 +1,7 @@
 {
 "name": "saas-dashboard-full-stack",
-"private": "true:,
+"version": "1.0.0",
+"private": true,
 "scripts": {
 "build": "cd client && npm install && npm run build",
 "start": "node server/server.js"
