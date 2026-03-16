@@ -30,8 +30,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 
 // Serve frontend (React) for all other routes
-app.use('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.resolve('client/dist/index.html'));
 });
 
 // Start server
