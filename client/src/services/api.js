@@ -1,7 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL;
-
 export async function checkAuth() {
-  const res = await fetch(`${API_URL}/me`, {
+  const res = await fetch("/api/me", {
     credentials: "include",
   });
 
@@ -13,7 +11,7 @@ export async function checkAuth() {
 }
 
 export async function getMe() {
-  const res = await fetch(`${API_URL}/me`, {
+  const res = await fetch("/api/me", {
     credentials: "include",
   });
 
@@ -29,7 +27,7 @@ export async function getMe() {
 }
 
 export async function register(email, password) {
-  const res = await fetch(`${API_URL}/register`, {
+  const res = await fetch("/api/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +44,7 @@ export async function register(email, password) {
 }
 
 export async function login(email, password) {
-  const res = await fetch(`${API_URL}/login`, {
+  const res = await fetch("/api/login", {
     method: "POST",
     credentials: "include",
     headers: {
@@ -63,7 +61,7 @@ export async function login(email, password) {
 
 export async function getProjects() {
  
-  const res = await fetch(`${API_URL}/projects`, {
+  const res = await fetch("/api/projects", {
     credentials: "include",
   });
 
@@ -76,7 +74,7 @@ export async function getProjects() {
 
 export async function createProject(name) {
   
-  const res = await fetch(`${API_URL}/projects`, {
+  const res = await fetch("/api/projects", {
     method: "POST",
     credentials: "include",
     headers: {
@@ -93,8 +91,7 @@ export async function createProject(name) {
 }
 
 export async function deleteProject(id) {
-  
-  await fetch(`${API_URL}/projects/${id}`, {
+  const res = await fetch(`/api/projects/${id}`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -105,7 +102,7 @@ export async function deleteProject(id) {
 }
 
 export async function logout() {
-  const res = await fetch(`${API_URL}/logout`, {
+  const res = await fetch("/api/logout", {
     method: "POST",
     credentials: "include",
   });
