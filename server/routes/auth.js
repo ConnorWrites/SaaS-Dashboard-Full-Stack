@@ -7,6 +7,8 @@ const router = express.Router();
 
 // CHECK AUTH
 router.get("/me", (req, res) => {
+  console.log("JWT_SECRET exists:", !!process.env.JWT_SECRET); // Debug log
+  console.log("Token present:", !!req.cookies?.token); // Debug log
   const token = req.cookies?.token;
 
   if (!token) {
