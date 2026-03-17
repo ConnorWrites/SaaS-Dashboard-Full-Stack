@@ -11,7 +11,8 @@ Live Demo:
 ![SaaS Dashboard Demo](https://i.imgur.com/76uMwxD.gif)
 
 
-Features
+## Features
+
 	•	User registration & login
 	•	JWT authentication stored in HTTP-only cookies
 	•	Protected API routes
@@ -22,15 +23,17 @@ Features
 
 ⸻
 
-Tech Stack
+## Tech Stack
 
 Frontend
+
 	•	React (Vite)
 	•	JavaScript (ES modules)
 	•	Fetch API
 	•	CSS
 
 Backend
+
 	•	Node.js
 	•	Express
 	•	JWT authentication
@@ -39,6 +42,7 @@ Backend
 	•	ES Modules
 
 Deployment
+
 	•	Render (single full-stack service)
 	•	Environment variables for secrets
 	•	Production static file serving
@@ -59,6 +63,7 @@ This ensures:
 ---
 
 ## 🗂️ Project Structure
+
 saas-dashboard/
 ├── client/              # React frontend
 │   ├── src/
@@ -75,7 +80,8 @@ saas-dashboard/
 
 ⸻
 
-Authentication Flow
+## Authentication Flow
+
 	1.	User registers or logs in
 	2.	Server creates a JWT
 	3.	JWT is stored in an HTTP-only cookie
@@ -86,15 +92,17 @@ This approach prevents token access from JavaScript and mirrors production SaaS 
 
 ⸻
 
-API Routes
+## API Routes
 
 Auth
+
 	•	POST /api/auth/register
 	•	POST /api/auth/login
 	•	POST /api/auth/logout
 	•	GET /api/auth/me
 
 Projects (Protected)
+
 	•	GET /api/projects
 	•	POST /api/projects
 	•	DELETE /api/projects/:id
@@ -112,7 +120,8 @@ In production, these are managed via Render’s environment settings.
 
 ⸻
 
-Tradeoffs & Design Decisions
+## Tradeoffs & Design Decisions
+
 	•	SQLite was chosen for simplicity and portability during development.
 	•	Cookies over localStorage for improved security.
 	•	Single-service deployment simplifies infrastructure and mirrors small SaaS setups.
@@ -120,7 +129,8 @@ Tradeoffs & Design Decisions
 
 ⸻
 
-What This Project Demonstrates
+## What This Project Demonstrates
+
 	•	Full authentication flow (frontend → backend → database)
 	•	Route protection and user isolation
 	•	Proper API routing and middleware usage
@@ -129,7 +139,8 @@ What This Project Demonstrates
 
 ⸻
 
-Future Improvements
+## Future Improvements
+
 	•	Edit project names
 	•	Password reset flow
 	•	Role-based access
@@ -139,7 +150,7 @@ Future Improvements
 
 ⸻
 
-Author
+## Author
 
 Connor Wilken
 GitHub: https://github.com/ConnorWrites
