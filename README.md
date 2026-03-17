@@ -64,18 +64,31 @@ This ensures:
 
 ## 🗂️ Project Structure
 
+
 saas-dashboard/
+
 ├── client/              # React frontend
+
 │   ├── src/
+
 │   │   ├── components/  # Layout, Sidebar, ProtectedRoute
+
 │   │   ├── pages/       # Login, Register, Dashboard
+
 │   │   └── services/    # API abstraction
+
 │   └── vite.config.js
+
 │
+
 ├── server/              # Node/Express backend
+
 │   ├── routes/          # auth, projects
+
 │   ├── middleware/      # auth middleware
+
 │   ├── db/              # SQLite setup
+
 │   └── server.js
 
 ⸻
