@@ -1,89 +1,48 @@
 # SaaS Dashboard (Full Stack)
 
-A full-stack SaaS-style dashboard built with React, Node.js, Express, and SQLite.  
-It demonstrates authentication, protected routes, persistent sessions, and a scalable dashboard layout.
+A full-stack SaaS-style dashboard application with authentication, protected routes, and user-scoped data. Built to demonstrate React + Node.js architecture, deployment, and auth patterns. This project was built as a learning exercise to understand SaaS architecture, authentication, and deployment.
 
----
+Live Demo:
+👉 https://saas-dashboard-s11p.onrender.com
 
-## 🚀 Live Demo
+⸻
 
-**Frontend:** https://saas-dashboard-full-stack-1.onrender.com  
-**Backend API:** https://saas-dashboard-full-stack.onrender.com  
+## Preview (GIF):
+![SaaS Dashboard Demo](https://i.imgur.com/76uMwxD.gif)
 
-> Deployed on Render using separate frontend and backend services.
 
----
+Features
+	•	User registration & login
+	•	JWT authentication stored in HTTP-only cookies
+	•	Protected API routes
+	•	User-scoped projects (each user sees only their own data)
+	•	Create & delete projects
+	•	Production build with React + Express
+	•	Deployed on Render
 
-## 🧠 Why This Project Exists
+⸻
 
-This project was built to showcase all of the following in one app, instead of showing them as isolated features.
+Tech Stack
 
-It includes:
-- Secure authentication
-- Protected routes
-- Persistent sessions using cookies
-- A reusable layout system
-- Production deployment considerations
+Frontend
+	•	React (Vite)
+	•	JavaScript (ES modules)
+	•	Fetch API
+	•	CSS
 
-The goal was to build something closer to what you'd see in a real product, not just a coding exercise.
+Backend
+	•	Node.js
+	•	Express
+	•	JWT authentication
+	•	SQLite
+	•	Cookie-based auth
+	•	ES Modules
 
----
+Deployment
+	•	Render (single full-stack service)
+	•	Environment variables for secrets
+	•	Production static file serving
 
-## ✨ Features
-
-- User registration & login
-- Secure authentication using JWT stored in HTTP-only cookies
-- Protected routes that verify authentication with the backend
-- Persistent login across page refreshes
-- SaaS-style layout with sidebar and header
-- Collapsible sidebar
-- User information displayed in the header
-- Logout functionality
-- Full frontend ↔ backend separation
-- Deployed to production (Render)
-
----
-
-## 🧱 Tech Stack
-
-### Frontend
-- React
-- React Router
-- Vite
-- CSS
-
-### Backend
-- Node.js
-- Express
-- SQLite
-- JWT (JSON Web Tokens)
-- bcrypt
-
-### Deployment
-- Render (Frontend + Backend as separate services)
-
----
-
-## 🔐 Authentication Architecture
-
-This app uses **cookie-based JWT authentication**.
-
-### How it works:
-
-1. User logs in with email & password
-2. Backend validates credentials
-3. Backend signs a JWT and stores it in an **HTTP-only cookie**
-4. Browser automatically sends the cookie with every request
-5. Protected routes verify the JWT on the server
-6. Frontend never accesses the token directly
-
-### Why cookies instead of localStorage?
-
-- Prevents XSS attacks
-- Works naturally with sessions
-- More secure than storing tokens in JavaScript
-
----
 
 ## 🔒 Protected Routes
 
@@ -114,55 +73,73 @@ saas-dashboard/
 │   ├── db/              # SQLite setup
 │   └── server.js
 
----
+⸻
 
-## ⚙️ Environment Variables
+Authentication Flow
+	1.	User registers or logs in
+	2.	Server creates a JWT
+	3.	JWT is stored in an HTTP-only cookie
+	4.	Protected routes verify the token
+	5.	Each request is tied to the authenticated user
 
-### Backend (`server/.env`)
-
-JWT_SECRET=your-secret-key
-PORT=4000
-
-### Frontend (`client/.env`)
-
-VITE_API_URL=https://saas-dashboard-full-stack.onrender.com
-
-> Environment variables are injected on Render for production.
-
----
-
-## 🛠️ Running Locally
-
-### Backend
-```bash
-cd server
-npm install
-node server.js
-
-### Frontend
-
-cd client
-npm install
-npm run dev
-
-📸 Screenshots
-
-![Preview of My App](https://imgur.com/LDQEmBN)
-
-____
-
-🔮 Possible future improvements
-	•	Role-based access (admin/user)
-	•	User profile editing
-	•	Billing or subscription logic
-	•	Pagination and filtering
-	•	UI polish and animations
+This approach prevents token access from JavaScript and mirrors production SaaS security patterns.
 
 ⸻
 
-👤 Author
+API Routes
 
-Conrad Wilken
-Frontend / Full-Stack Developer
+Auth
+	•	POST /api/auth/register
+	•	POST /api/auth/login
+	•	POST /api/auth/logout
+	•	GET /api/auth/me
 
+Projects (Protected)
+	•	GET /api/projects
+	•	POST /api/projects
+	•	DELETE /api/projects/:id
+
+⸻
+
+
+## ⚙️ Environment Variables
+
+Create a .env file in the root:
+
+JWT_SECRET=your-secret-key
+
+In production, these are managed via Render’s environment settings.
+
+⸻
+
+Tradeoffs & Design Decisions
+	•	SQLite was chosen for simplicity and portability during development.
+	•	Cookies over localStorage for improved security.
+	•	Single-service deployment simplifies infrastructure and mirrors small SaaS setups.
+	•	No ORM to keep database logic explicit and easy to reason about.
+
+⸻
+
+What This Project Demonstrates
+	•	Full authentication flow (frontend → backend → database)
+	•	Route protection and user isolation
+	•	Proper API routing and middleware usage
+	•	Production deployment debugging and fixes
+	•	Understanding of real-world full-stack architecture
+
+⸻
+
+Future Improvements
+	•	Edit project names
+	•	Password reset flow
+	•	Role-based access
+	•	PostgreSQL migration
+	•	UI polish & loading states
+	•	Unit and integration tests
+
+⸻
+
+Author
+
+Connor Wilken
 GitHub: https://github.com/ConnorWrites
