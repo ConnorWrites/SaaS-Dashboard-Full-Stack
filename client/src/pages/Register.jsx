@@ -12,7 +12,7 @@ export default function Register() {
 
     try {
       await register(email, password);
-      navigate("/dashboard"); // ✅ auto-login redirect
+      navigate("/dashboard"); // auto-login redirect
     } catch (err) {
       alert("Registration failed");
       console.error(err);

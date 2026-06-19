@@ -29,3 +29,12 @@ client/node_modules/
 client/dist/
 .env
 .DS_Store
+
+# SQLite database
+database.db
+
+# Node
+node_modules/
+
+#Env
+.env
