@@ -9,7 +9,6 @@ export default function Layout() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  // Fetch user info on mount
   useEffect(() => {
     getMe()
       .then((data) => {
@@ -17,36 +16,33 @@ export default function Layout() {
       })
       .catch(() => {
         setUser(null);
+	navigate("/");
       });
-  }, []);
+  }, [navigate]);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const handleLogout = async () => {
     try {
       await logout();
-
-      setUser(null);
-
-      navigate("/login", { replace: true });
-
     } catch (err) {
       console.error("Logout failed", err);
-    }
+    } finally {
+setUser(null);
+navigate("/login", { replace: true });
+}
   };
 
   return (
-    <div className="layout">
+    <div className={`layout ${isOpen ? "sidebar-open" : "sidebar-closed"}`}>
       <Sidebar isOpen={isOpen} />
-
-      <div className={`main-content ${isOpen ? "" : "collapsed"}`}>
+	<div className="main">
         <header className="header">
           <button className="toggle-btn" onClick={toggleSidebar}>
             ☰
           </button>
 
-          <h1>My SaaS Dashboard</h1>
-          <div style={{ marginLeft: "auto", display: "flex", gap: "1rem" }}>
+          <div className="header-right">
             {user && <span>Welcome, {user.email}</span>}
 
           <button onClick={handleLogout}>
@@ -54,11 +50,10 @@ export default function Layout() {
           </button>
           </div>
         </header>
-
-        <div className="content">
-          <Outlet />
-        </div>
-      </div>
-    </div>
+<main className="content">
+<Outlet />
+</main>
+</div>
+</div>
   );
 }

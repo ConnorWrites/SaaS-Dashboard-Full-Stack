@@ -7,7 +7,7 @@ export default function Sidebar({ isOpen }) {
 
   return (
     <nav className={`sidebar ${isOpen ? "open" : "closed"}`}>
-      <h2>{isOpen && "Dashboard"}</h2>
+      <h2>{isOpen ? "Dashboard" : "D"}</h2>
       <ul>
         <li>
           <NavLink to="/dashboard" className={linkClasses}>
