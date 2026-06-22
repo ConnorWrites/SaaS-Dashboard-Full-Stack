@@ -32,6 +32,7 @@ setUser(null);
 navigate("/login", { replace: true });
 }
   };
+  const atPosition = user?.email.indexOf("@");
 
   return (
     <div className={`layout ${isOpen ? "sidebar-open" : "sidebar-closed"}`}>
@@ -43,7 +44,7 @@ navigate("/login", { replace: true });
           </button>
 <span className="header-title">Dashboard</span>
           <div className="header-right">
-            {user && <span className="user-email">Welcome{user ? `, ${user.email}` : ""}</span>}
+            {user && <span className="user-email">Welcome{user ? `, ` + user.email.slice(0,1).toUpperCase() + user.email.slice(1, atPosition) : ""}</span>}
 
           <button className="logout-btn" onClick={handleLogout}>
             Logout
