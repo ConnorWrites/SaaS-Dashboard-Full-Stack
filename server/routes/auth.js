@@ -1,11 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const db = require("../db/db");
+const db = require("../db/db.js");
 
 const router = express.Router();
 
-// CHECK AUTH
+const isProd = process.env.NODE_ENV === "production";
+
 router.get("/me", (req, res) => {
   console.log("JWT_SECRET exists:", !!process.env.JWT_SECRET); // Debug log
   console.log("Token present:", !!req.cookies?.token); // Debug log
@@ -23,7 +24,6 @@ router.get("/me", (req, res) => {
   }
 });
 
-// REGISTER
 router.post("/register", (req, res) => {
   const { email, password } = req.body;
 
@@ -47,8 +47,8 @@ const token = jwt.sign(
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
       maxAge: 60 * 60 * 1000,
     });
 
@@ -56,7 +56,6 @@ const token = jwt.sign(
   });
 });
 
-// LOGIN
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -73,18 +72,16 @@ router.post("/login", (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // ✅ Create JWT using ENV secret
     const token = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    // ✅ Set cookie (RENDER SAFE)
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,        // required on Render (HTTPS)
-      sameSite: "none",    // required for cross-origin
+      secure: isProd,        // required on Render (HTTPS)
+      sameSite: isProd ? "none" : "lax",    // required for cross-origin
       maxAge: 60 * 60 * 1000,
     });
 
@@ -92,12 +89,11 @@ router.post("/login", (req, res) => {
   });
 });
 
-// LOGOUT
 router.post("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax",
   });
   res.json({ message: "Logged out" });
 });

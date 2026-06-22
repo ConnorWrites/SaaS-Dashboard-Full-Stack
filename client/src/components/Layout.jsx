@@ -12,7 +12,7 @@ export default function Layout() {
   useEffect(() => {
     getMe()
       .then((data) => {
-        setUser(data);
+        setUser(data.user);
       })
       .catch(() => {
         setUser(null);
@@ -41,11 +41,11 @@ navigate("/login", { replace: true });
           <button className="toggle-btn" onClick={toggleSidebar}>
             ☰
           </button>
-
+<span className="header-title">Dashboard</span>
           <div className="header-right">
-            {user && <span>Welcome, {user.email}</span>}
+            {user && <span className="user-email">Welcome{user ? `, ${user.email}` : ""}</span>}
 
-          <button onClick={handleLogout}>
+          <button className="logout-btn" onClick={handleLogout}>
             Logout
           </button>
           </div>

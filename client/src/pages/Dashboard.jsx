@@ -1,3 +1,4 @@
+import styles from "./Dashboard.module.css";
 import { useEffect, useState } from "react";
 import {
   getProjects,
@@ -5,7 +6,6 @@ import {
   deleteProject,
 } from "../services/api";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
@@ -34,26 +34,29 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Dashboard</h1>
+  <div className={styles.container}>
+    <h1 className={styles.title}>Dashboard</h1>
 
-      <form onSubmit={handleAdd}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="New project"
-        />
-        <button>Add</button>
-      </form>
+    <form onSubmit={handleAdd}>
+      <input
+        className={styles.input}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="New project"
+      />
+      <button>Add</button>
+    </form>
 
-      <ul>
-        {projects.map((p) => (
-          <li key={p.id}>
-            {p.name}
-            <button onClick={() => handleDelete(p.id)}>X</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    <ul>
+      {projects.map((p) => (
+        <li key={p.id}>
+          {p.name}
+          <button className={styles.delete} onClick={() => handleDelete(p.id)}>
+            X
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 }

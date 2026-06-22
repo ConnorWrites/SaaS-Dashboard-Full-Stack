@@ -1,26 +1,88 @@
-.main-content {
+.layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: #e8edf1;
+  color: brown;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sidebar-open .main {
+  margin-left: 240px;
+}
+
+.sidebar-closed .main {
+  margin-left: 70px;
+}
+
+.main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  transition: margin-left 0.3s;
-}
-
-.main-content.collapsed {
-  margin-left: 60px; 
+  transition: margin-left 0.25s ease;
 }
 
 .header {
-  background-color: #f5f5f5;
-  padding: 1rem 2rem;
+  height: 56px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .toggle-btn {
-  font-size: 1.5rem;
   background: none;
   border: none;
+  font-size: 20px;
   cursor: pointer;
+  color: #2f63b6;
+}
+
+.toggle-btn:hover {
+  color: #111827;
+}
+
+.user-email {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+.logout-btn {
+  background: #b5c7e9;
+  border: none;
+  margin-left: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #0c0c0c;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.content {
+  padding: 24px;
 }
