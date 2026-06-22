@@ -50,6 +50,7 @@
 .sidebar-link:hover {
   background: #374151;
   color: white;
+  width: 80%;
 }
 
 .sidebar-link.active {
