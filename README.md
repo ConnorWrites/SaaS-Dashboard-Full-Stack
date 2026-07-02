@@ -8,8 +8,7 @@ Live Demo:
 ⸻
 
 ## Preview (GIF)
-
-![Login demo](https://i.imgur.com/POAnehs.gif)
+[Imgur](https://imgur.com/POAnehs.gif)
 
 ## Features
 
