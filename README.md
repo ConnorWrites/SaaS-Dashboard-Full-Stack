@@ -9,7 +9,7 @@ Live Demo:
 
 ## Preview (GIF)
 
-![Login demo](https://i.imgur.com/POAnehs.gif)
+<img src="https://i.imgur.com/POAnehs.gif" alt="SaaS Dashboard Preview" />
 
 ## Features
 
