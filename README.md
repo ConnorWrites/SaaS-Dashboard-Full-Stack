@@ -8,8 +8,7 @@ Live Demo:
 ⸻
 
 ## Preview (GIF)
-
-<img src="https://i.imgur.com/POAnehs.gif" alt="SaaS Dashboard Preview" />
+![Alt text](https://i.imgur.com/POAnehs.gif?raw=1)
 
 ## Features
 
