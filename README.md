@@ -8,7 +8,7 @@ Live Demo:
 ⸻
 
 ## Preview (GIF):
-![SaaS Dashboard Demo]([https://imgur.com/a/r0W0yMa])
+![Login screen](https://imgur.com/a/r0W0yMa)
 
 
 ## Features
