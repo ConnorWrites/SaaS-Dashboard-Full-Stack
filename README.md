@@ -7,9 +7,9 @@ Live Demo:
 
 ⸻
 
-## Preview (GIF):
-![Login screen](https://imgur.com/a/CJNWCqU)
+## Preview (GIF)
 
+![Login demo](https://i.imgur.com/POAnehs.gif)
 
 ## Features
 
